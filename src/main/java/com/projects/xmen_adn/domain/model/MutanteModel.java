@@ -1,4 +1,4 @@
-package com.projects.xmen_adn.domain.model.dto;
+package com.projects.xmen_adn.domain.model;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -7,9 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class PersonaDTO {
+public class MutanteModel {
 
-    private String personaId;
+    private String mutanteId;
 
     private String nombre;
 

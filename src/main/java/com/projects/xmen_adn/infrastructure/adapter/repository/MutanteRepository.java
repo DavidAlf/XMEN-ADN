@@ -7,12 +7,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.projects.xmen_adn.infrastructure.adapter.entityes.PersonaEntity;
+import com.projects.xmen_adn.infrastructure.adapter.entityes.MutanteEntity;
 
 @EnableScan
 @Repository
-public interface PersonaRepository extends CrudRepository<PersonaEntity, String> {
+public interface MutanteRepository extends CrudRepository<MutanteEntity, String> {
 
-    Optional<PersonaEntity> findByNombre(@Param(("nombre")) String nombre);
+    Optional<MutanteEntity> findByNombre(@Param(("nombre")) String nombre);
 
 }

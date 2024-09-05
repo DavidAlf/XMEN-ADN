@@ -3,11 +3,10 @@ package com.projects.xmen_adn.infrastructure.adapter.mapper;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import org.springframework.stereotype.Component;
-
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter;
+import com.projects.xmen_adn.infrastructure.config.util.Mapper;
 
-@Component
+@Mapper
 public class AdnMapper implements DynamoDBTypeConverter<String, String[]> {
 
     @Override

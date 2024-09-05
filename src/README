@@ -5,3 +5,6 @@ String[] dna = {"ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"};
 
 ADN NO MUTANTE
 String[] dna = {"ATGCGA","CAGTGC","TTATTT","AGACGG","GCGTCA","TCACTG"};
+
+URL SWAGGER
+http://localhost:9090/swagger-ui/index.html

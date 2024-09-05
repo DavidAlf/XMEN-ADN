@@ -8,11 +8,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @EnableWebMvc
 @RestController
+@Tag(name = "PING")
 @RequestMapping("/")
 public class PingController {
+    
     @RequestMapping(path = "/ping", method = RequestMethod.GET)
     public Map<String, String> ping() {
         Map<String, String> pong = new HashMap<>();

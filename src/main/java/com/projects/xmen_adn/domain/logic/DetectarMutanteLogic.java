@@ -3,15 +3,15 @@ package com.projects.xmen_adn.domain.logic;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
-import com.projects.xmen_adn.domain.model.constants.PersonaConstant;
-import com.projects.xmen_adn.domain.port.MutantePort;
+import com.projects.xmen_adn.domain.model.constants.MutanteConstant;
+import com.projects.xmen_adn.domain.port.DetectarMutantePort;
 import com.projects.xmen_adn.infrastructure.adapter.exception.ApiException;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class MutanteLogic implements MutantePort {
+public class DetectarMutanteLogic implements DetectarMutantePort {
 
     private static final int REQUIRED_SEQUENCE_LENGTH = 4;
 
@@ -22,7 +22,7 @@ public class MutanteLogic implements MutantePort {
         try {
             if (dna == null || dna.length == 0) {
                 throw new ApiException(HttpStatus.NOT_FOUND,
-                        String.format(PersonaConstant.ADN_INVALID));
+                        String.format(MutanteConstant.ADN_INVALID));
             }
 
             int adnSize = dna.length;
