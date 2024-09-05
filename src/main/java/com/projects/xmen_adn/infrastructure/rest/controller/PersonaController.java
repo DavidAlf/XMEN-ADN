@@ -30,12 +30,12 @@ public class PersonaController {
     }
 
     @PutMapping("/{id}")
-    public PersonaDTO update(@PathVariable Long id, @RequestBody PersonaRequest personaRequest) {
+    public PersonaDTO update(@PathVariable String id, @RequestBody PersonaRequest personaRequest) {
         return personaUseCase.update(id, personaRequest);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable String id) {
         personaUseCase.delete(id);
     }
 

@@ -11,15 +11,12 @@ import com.amazonaws.serverless.proxy.spring.SpringBootLambdaContainerHandler;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
 
-import jakarta.ws.rs.core.Application;
-
 public class StreamLambdaHandler implements RequestStreamHandler {
     private static SpringBootLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse> handler;
     static {
         try {
-            handler = SpringBootLambdaContainerHandler.getAwsProxyHandler(Application.class);
-        } catch (ContainerInitializationException e) {
-            // if we fail here. We re-throw the exception to force another cold start
+            handler = SpringBootLambdaContainerHandler.getAwsProxyHandler(XmenAdnApplication.class);
+        } catch (ContainerInitializationException e) {        
             e.printStackTrace();
             throw new RuntimeException("Could not initialize Spring Boot application", e);
         }

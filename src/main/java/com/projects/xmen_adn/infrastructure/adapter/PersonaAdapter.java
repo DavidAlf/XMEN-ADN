@@ -3,24 +3,24 @@ package com.projects.xmen_adn.infrastructure.adapter;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import com.projects.xmen_adn.domain.model.PersonaModel;
 import com.projects.xmen_adn.domain.model.constants.PersonaConstant;
 import com.projects.xmen_adn.domain.port.PersonaPort;
+import com.projects.xmen_adn.infrastructure.adapter.entityes.PersonaEntity;
 import com.projects.xmen_adn.infrastructure.adapter.exception.ApiException;
 import com.projects.xmen_adn.infrastructure.adapter.mapper.PersonaMapper;
 import com.projects.xmen_adn.infrastructure.adapter.repository.PersonaRepository;
 
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Repository
-@Transactional
+@Component
 public class PersonaAdapter implements PersonaPort {
 
     @Autowired
@@ -40,7 +40,7 @@ public class PersonaAdapter implements PersonaPort {
     }
 
     @Override
-    public PersonaModel update(Long id, PersonaModel personaModel) {
+    public PersonaModel update(String id, PersonaModel personaModel) {
         log.info("[PersonaAdapter(update)] -> Actualizando ");
 
         var personaEntity = personaMapper.modelTOentity(personaModel);
@@ -53,13 +53,13 @@ public class PersonaAdapter implements PersonaPort {
 
                     return personaRepository.save(item);
                 })
-                .orElse(null);
+                .orElse(PersonaEntity.builder().build());
 
         return personaMapper.entityTOmodel(personaEntityUpdate);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
         log.info("[PersonaAdapter(delete)] -> Eliminando ");
 
         String msn = personaRepository.findById(id).map(
@@ -76,42 +76,55 @@ public class PersonaAdapter implements PersonaPort {
     public List<PersonaModel> list() {
         log.info("[PersonaAdapter(list)] -> Listando ");
 
-        return personaRepository.findAll().stream().map(personaMapper::entityTOmodel)
+        var personaEntity = StreamSupport.stream(personaRepository.findAll().spliterator(), false)
                 .collect(Collectors.toList());
+
+        return personaEntity.stream().map(personaMapper::entityTOmodel).collect(Collectors.toList());
     }
 
     @Override
     public Optional<PersonaModel> getByName(String nombre) {
         log.info("[PersonaAdapter(getByName)] -> Buscando por el nombre");
 
-        var optionalPersona = personaRepository.findByNombre(nombre);
+        try {
+            var optionalPersona = personaRepository.findByNombre(nombre);
 
-        if (!optionalPersona.isPresent()) {
-            throw new ApiException(HttpStatus.NOT_FOUND,
-                    String.format(PersonaConstant.CURRENT_NOT_PRESENT, nombre));
+            if (optionalPersona == null || optionalPersona.isEmpty()) {
+                throw new ApiException(HttpStatus.NOT_FOUND,
+                        String.format(PersonaConstant.CURRENT_NOT_PRESENT, nombre));
+            }
+
+            Optional<PersonaModel> personaModel = Optional
+                    .of(personaMapper.entityTOmodel(optionalPersona.get()));
+
+            return personaModel;
+        } catch (Exception e) {
+            System.out.println(String.format(PersonaConstant.CURRENT_NOT_PRESENT, nombre));
+            return Optional.of(PersonaModel.builder().build());
         }
 
-        Optional<PersonaModel> personaModel = Optional
-                .of(personaMapper.entityTOmodel(optionalPersona.get()));
-
-        return personaModel;
     }
 
     @Override
-    public Optional<PersonaModel> getById(Long id) {
+    public Optional<PersonaModel> getById(String id) {
         log.info("[PersonaAdapter(getById)] -> Buscando por el id");
 
-        var optionalPersona = personaRepository.findById(id);
+        try {
+            var optionalPersona = personaRepository.findById(id);
 
-        if (!optionalPersona.isPresent()) {
-            throw new ApiException(HttpStatus.NOT_FOUND,
-                    String.format(PersonaConstant.CURRENT_NOT_PRESENT, id));
+            if (!optionalPersona.isPresent()) {
+                throw new ApiException(HttpStatus.NOT_FOUND,
+                        String.format(PersonaConstant.CURRENT_NOT_PRESENT, id));
+            }
+
+            Optional<PersonaModel> personaModel = Optional
+                    .of(personaMapper.entityTOmodel(optionalPersona.get()));
+
+            return personaModel;
+        } catch (Exception e) {
+            System.out.println(String.format(PersonaConstant.CURRENT_NOT_PRESENT, id));
+            return Optional.of(PersonaModel.builder().build());
         }
-
-        Optional<PersonaModel> personaModel = Optional
-                .of(personaMapper.entityTOmodel(optionalPersona.get()));
-
-        return personaModel;
     }
 
 }

@@ -25,6 +25,6 @@ Resources:
 Outputs:
   AwsLambdaExmenAdn:
     Description: URL for application
-    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/ping'
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/xmen-dev/ping'
     Export:
       Name: AwsLambdaExmenAdn

@@ -9,7 +9,7 @@ import lombok.Setter;
 @Builder
 public class PersonaDTO {
 
-    private Long personaId;
+    private String personaId;
 
     private String nombre;
 

@@ -39,7 +39,7 @@ public class PersonaService implements PersonaUseCase {
     }
 
     @Override
-    public PersonaDTO update(Long id, PersonaRequest personaRequest) {
+    public PersonaDTO update(String id, PersonaRequest personaRequest) {
         log.info("[PersonaService(update)] -> Actualizando");
 
         var personaModel = personaRequestMapper.requestTOmodel(personaRequest);
@@ -50,7 +50,7 @@ public class PersonaService implements PersonaUseCase {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
         log.info("[PersonaService(delete)] -> Eliminando");
 
         personaPort.delete(id);

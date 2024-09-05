@@ -9,9 +9,9 @@ public interface PersonaUseCase {
 
     PersonaDTO save(PersonaRequest personaRequest);
 
-    PersonaDTO update(Long id, PersonaRequest personaRequest);
+    PersonaDTO update(String id, PersonaRequest personaRequest);
 
-    void delete(Long id);
+    void delete(String id);
 
     List<PersonaDTO> list();
 

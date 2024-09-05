@@ -1,13 +1,13 @@
 <assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
-    <id>lambda-package</id>
+    <id>lambda</id>
     <formats>
         <format>zip</format>
     </formats>
     <includeBaseDirectory>false</includeBaseDirectory>
     <fileSets>
-        <!-- copy runtime dependencies with some exclusions -->
+        <!-- Incluir solo las dependencias runtime -->
         <fileSet>
             <directory>${project.build.directory}${file.separator}lib</directory>
             <outputDirectory>lib</outputDirectory>
@@ -15,13 +15,13 @@
                 <exclude>tomcat-embed*</exclude>
             </excludes>
         </fileSet>
-        <!-- copy all classes -->
+        <!-- Incluir todas las clases compiladas -->
         <fileSet>
             <directory>${project.build.directory}${file.separator}classes</directory>
             <includes>
-                <include>**</include>
+                <include>**/*</include>
             </includes>
-            <outputDirectory>${file.separator}</outputDirectory>
+            <outputDirectory>/</outputDirectory>
         </fileSet>
     </fileSets>
 </assembly>
