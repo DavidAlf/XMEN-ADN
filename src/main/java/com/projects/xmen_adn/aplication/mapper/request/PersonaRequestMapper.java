@@ -12,6 +12,7 @@ public class PersonaRequestMapper {
         return PersonaModel.builder()
                 .nombre(personaRequest.getNombre())
                 .apellido(personaRequest.getApellido())
+                .adn(personaRequest.getAdn())
                 .build();
     }
 }

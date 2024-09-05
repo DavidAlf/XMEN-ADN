@@ -13,6 +13,8 @@ public class PersonaDTOMaper {
                 .personaId(personaModel.getPersonaId())
                 .nombre(personaModel.getNombre())
                 .apellido(personaModel.getApellido())
+                .adn(personaModel.getAdn())
+                .isMutante(personaModel.isMutante())
                 .build();
     }
 }

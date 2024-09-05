@@ -13,6 +13,8 @@ public class PersonaMapper {
                 .personaId(personaModel.getPersonaId())
                 .nombre(personaModel.getNombre())
                 .apellido(personaModel.getApellido())
+                .adn(personaModel.getAdn())
+                .isMutante(personaModel.isMutante())
                 .build();
     }
 
@@ -21,6 +23,8 @@ public class PersonaMapper {
                 .personaId(personaEntity.getPersonaId())
                 .nombre(personaEntity.getNombre())
                 .apellido(personaEntity.getApellido())
+                .adn(personaEntity.getAdn())
+                .isMutante(personaEntity.isMutante())
                 .build();
     }
 

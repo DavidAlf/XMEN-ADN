@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
+import com.projects.xmen_adn.domain.logic.MutanteLogic;
 import com.projects.xmen_adn.domain.model.PersonaModel;
 import com.projects.xmen_adn.domain.model.constants.PersonaConstant;
 import com.projects.xmen_adn.domain.port.PersonaPort;
@@ -27,6 +28,9 @@ public class PersonaAdapter implements PersonaPort {
     private PersonaRepository personaRepository;
 
     @Autowired
+    private MutanteLogic mutanteLogic;
+
+    @Autowired
     private PersonaMapper personaMapper;
 
     @Override
@@ -34,6 +38,10 @@ public class PersonaAdapter implements PersonaPort {
         log.info("[PersonaAdapter(save)] -> Guardando ");
 
         var personaEntity = personaMapper.modelTOentity(personaModel);
+
+        var isMutante = mutanteLogic.isMutante(personaEntity.getAdn());
+        personaEntity.setMutante(isMutante);
+
         var personaEntitySaved = personaRepository.save(personaEntity);
 
         return personaMapper.entityTOmodel(personaEntitySaved);
@@ -50,6 +58,7 @@ public class PersonaAdapter implements PersonaPort {
                     item.setPersonaId(id);
                     item.setNombre(personaEntity.getNombre());
                     item.setApellido(personaEntity.getApellido());
+                    item.setMutante(mutanteLogic.isMutante(personaEntity.getAdn()));
 
                     return personaRepository.save(item);
                 })
@@ -99,7 +108,7 @@ public class PersonaAdapter implements PersonaPort {
 
             return personaModel;
         } catch (Exception e) {
-            System.out.println(String.format(PersonaConstant.CURRENT_NOT_PRESENT, nombre));
+            log.error(String.format(PersonaConstant.CURRENT_NOT_PRESENT, nombre), e.getMessage());
             return Optional.of(PersonaModel.builder().build());
         }
 
@@ -122,7 +131,7 @@ public class PersonaAdapter implements PersonaPort {
 
             return personaModel;
         } catch (Exception e) {
-            System.out.println(String.format(PersonaConstant.CURRENT_NOT_PRESENT, id));
+            log.error(String.format(PersonaConstant.CURRENT_NOT_PRESENT, id), e.getMessage());
             return Optional.of(PersonaModel.builder().build());
         }
     }

@@ -1,1 +1,7 @@
 NO te olvides de confugurar las variables de entorno en AWS
+
+ADN MUTANTE
+String[] dna = {"ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"};
+
+ADN NO MUTANTE
+String[] dna = {"ATGCGA","CAGTGC","TTATTT","AGACGG","GCGTCA","TCACTG"};

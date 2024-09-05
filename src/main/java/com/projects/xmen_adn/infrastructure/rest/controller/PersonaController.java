@@ -17,6 +17,8 @@ import com.projects.xmen_adn.aplication.useCases.PersonaUseCase;
 import com.projects.xmen_adn.domain.model.dto.PersonaDTO;
 import com.projects.xmen_adn.domain.model.request.PersonaRequest;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/persona")
 public class PersonaController {
@@ -25,12 +27,12 @@ public class PersonaController {
     private PersonaUseCase personaUseCase;
 
     @PostMapping
-    public PersonaDTO save(@RequestBody PersonaRequest personaRequest) {
+    public PersonaDTO save(@Valid @RequestBody PersonaRequest personaRequest) {
         return personaUseCase.save(personaRequest);
     }
 
     @PutMapping("/{id}")
-    public PersonaDTO update(@PathVariable String id, @RequestBody PersonaRequest personaRequest) {
+    public PersonaDTO update(@Valid @PathVariable String id, @Valid @RequestBody PersonaRequest personaRequest) {
         return personaUseCase.update(id, personaRequest);
     }
 

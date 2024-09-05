@@ -15,4 +15,8 @@ public class PersonaDTO {
 
     private String apellido;
 
+    private String[] adn;
+
+    private boolean isMutante;
+
 }
