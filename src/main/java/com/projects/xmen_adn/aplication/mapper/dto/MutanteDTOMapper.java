@@ -5,7 +5,7 @@ import com.projects.xmen_adn.domain.model.dto.MutanteDTO;
 import com.projects.xmen_adn.infrastructure.config.util.Mapper;
 
 @Mapper
-public class MutanteDTOMaper {
+public class MutanteDTOMapper {
 
     public MutanteDTO modelTOdto(MutanteModel mutanteModel) {
         return MutanteDTO.builder()

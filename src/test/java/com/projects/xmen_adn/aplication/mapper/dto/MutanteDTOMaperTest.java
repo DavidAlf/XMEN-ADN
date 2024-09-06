@@ -13,7 +13,7 @@ import com.projects.xmen_adn.domain.model.dto.MutanteDTO;
 public class MutanteDTOMaperTest {
 
     @InjectMocks
-    private MutanteDTOMaper mutanteDTOMaper;
+    private MutanteDTOMapper mutanteDTOMaper;
 
     private MutanteModel mutanteModel;
 

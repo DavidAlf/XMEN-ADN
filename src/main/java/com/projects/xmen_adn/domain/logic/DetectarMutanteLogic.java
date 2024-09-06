@@ -44,7 +44,7 @@ public class DetectarMutanteLogic implements DetectarMutantePort {
         }
     }
 
-    private int countSequences(String sequence) {
+    public int countSequences(String sequence) {
         int count = 0;
         int consecutiveCount = 1;
 
@@ -61,7 +61,7 @@ public class DetectarMutanteLogic implements DetectarMutantePort {
         return count;
     }
 
-    private String getColumn(String[] dna, int columnIndex) {
+    public String getColumn(String[] dna, int columnIndex) {
         StringBuilder column = new StringBuilder();
         for (String row : dna) {
             column.append(row.charAt(columnIndex));
@@ -69,7 +69,7 @@ public class DetectarMutanteLogic implements DetectarMutantePort {
         return column.toString();
     }
 
-    private int countDiagonalSequences(String[] dna, int size) {
+    public int countDiagonalSequences(String[] dna, int size) {
         int count = 0;
 
         for (int i = 0; i < size; i++) {
@@ -103,7 +103,7 @@ public class DetectarMutanteLogic implements DetectarMutantePort {
         return count;
     }
 
-    private String[] reverseArray(String[] array) {
+    public String[] reverseArray(String[] array) {
         String[] reversed = new String[array.length];
         for (int i = 0; i < array.length; i++) {
             reversed[i] = new StringBuilder(array[i]).reverse().toString();

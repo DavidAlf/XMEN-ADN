@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.projects.xmen_adn.aplication.mapper.dto.MutanteDTOMaper;
+import com.projects.xmen_adn.aplication.mapper.dto.MutanteDTOMapper;
 import com.projects.xmen_adn.aplication.mapper.request.MutanteRequestMapper;
 import com.projects.xmen_adn.aplication.useCases.MutanteUseCase;
 import com.projects.xmen_adn.domain.model.dto.MutanteDTO;
@@ -26,7 +26,7 @@ public class MutanteService implements MutanteUseCase {
     private MutanteRequestMapper mutanteRequestMapper;
 
     @Autowired
-    private MutanteDTOMaper mutanteDTOMaper;
+    private MutanteDTOMapper mutanteDTOMaper;
 
     @Override
     public MutanteDTO save(MutanteRequest mutanteRequest) {
