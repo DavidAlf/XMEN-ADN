@@ -1,0 +1,166 @@
+{
+	"info": {
+		"_postman_id": "f84aa7a1-a99d-4802-9ab6-8a39f04a69e4",
+		"name": "XMEN-ADN",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12613378"
+	},
+	"item": [
+		{
+			"name": "Mutante",
+			"item": [
+				{
+					"name": "addPerson",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Otro\",\r\n    \"apellido\": \"Alfonso\",\r\n    \"adn\": [\r\n        \"ATGCGA\",\r\n        \"CAGTGC\",\r\n        \"TTATTT\",\r\n        \"AGACGG\",\r\n        \"GCGTCA\",\r\n        \"TCACTG\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DEV}}/mutant",
+							"host": [
+								"{{DEV}}"
+							],
+							"path": [
+								"mutant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DEV}}/mutant",
+							"host": [
+								"{{DEV}}"
+							],
+							"path": [
+								"mutant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Jorge David\",\r\n    \"apellido\": \"Alfonso Ortiz\",\r\n    \"adn\": [\r\n        \"ATGCGA\",\r\n        \"CAGTGC\",\r\n        \"TTATGT\",\r\n        \"AGAAGG\",\r\n        \"CCCCTA\",\r\n        \"TCACTG\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DEV}}/mutant/2796013d-c225-4875-afeb-556f54b8ed7f",
+							"host": [
+								"{{DEV}}"
+							],
+							"path": [
+								"mutant",
+								"2796013d-c225-4875-afeb-556f54b8ed7f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePerson",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL}}/mutant/3914b741-fe5b-4e53-9698-3526f3a3158a",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"path": [
+								"mutant",
+								"3914b741-fe5b-4e53-9698-3526f3a3158a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByNombre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DEV}}/mutant/find?nombre=Jorge David",
+							"host": [
+								"{{DEV}}"
+							],
+							"path": [
+								"mutant",
+								"find"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Jorge David"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Estadisticas",
+			"item": [
+				{
+					"name": "Estadisticas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DEV}}/stats",
+							"host": [
+								"{{DEV}}"
+							],
+							"path": [
+								"stats"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{DEV}}/ping",
+					"host": [
+						"{{DEV}}"
+					],
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
